@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "EmailIslem";
+    Layout = "~/Areas/Panel/Views/Shared/_PanelLayout.cshtml";
+}
+
+
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h1 class="mb-0 font-size-18">EMAİL İŞLEMLERİ</h1>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                                <li class="breadcrumb-item active">Email işlemleri</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body" id="tblemail">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal-lg {
+        max-width: 80%;
+    }
+</style>
+<div class="modal fade bd-example-modal-lg" id="mdlemail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">Email:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="txtEmail"  disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">Konu</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="txtkonu" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">Mesaj</label>
+                    <div class="col-md-9">
+                        <textarea class="form-control" id="txtmesaj" rows="5" cols="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-primary" type="button" id="btnKaydet" onclick="MailGönder();">Mail Gönder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            var hubNotify = $.connection.phub;
+            $.connection.hub.start().done(function() {
+                emailData();
+            });
+
+            hubNotify.client.emailRefreshData = function() {
+                emailData();
+            };
+        });
+
+        function emailData() {
+            $.get('@Url.Action("EmailList", "Email", new {area = "Panel"})',
+                (data) => {
+                    $("#tblemail").html(data);
+                });
+        }
+
+
+        function MailEkran(Id) {
+            $.get('@Url.Action("GetEMailAdress", "Email", new {area = "Panel"})',
+                { 'Id': Id },
+                (data) => {
+                    $("#txtEmail").val(data);
+                    $("#mdlemail").modal('show');
+                });
+        }
+
+        function MailGönder() {
+            var email = $("#txtEmail").val();
+            var konu = $("#txtkonu").val();
+            var mesaj = $("#txtmesaj").val();
+
+            $.post('@Url.Action("EmailGonder","Email",new {area="Panel"})',
+                {
+                    'EmailAdres': email,
+                    'Konu': konu,
+                    'Mesaj':mesaj
+                },
+                (data) => {
+                    if (data) {
+                        UI.alertToaster("success", "Email basarılı bir sekilde gönderildi", "Basarılı");
+                    }
+                });
+
+
+        }
+
+    </script>
+}

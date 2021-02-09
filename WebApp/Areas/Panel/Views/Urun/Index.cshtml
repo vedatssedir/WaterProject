@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Panel/Views/Shared/_PanelLayout.cshtml";
+}
+
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h1 class="mb-0 font-size-18">ÜRÜN İŞLEMLERİ</h1>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                                <li class="breadcrumb-item active">Ürün işlemleri</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-title p-3">
+                            <button type="button" class="btn btn-primary" id="btnEkle">Ürün Oluştur</button>
+                        </div>
+                        <div class="card-body" id="tblurun">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal-lg {
+        max-width: 60%;
+    }
+</style>
+<div class="modal fade bd-example-modal-lg" id="btnUrunEkle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div id="mdlUrunData">
+
+            </div>
+            <div class="modal-footer">
+
+
+                <button class="btn btn-secondary" type="button" id="btnKaydet" onclick="urunKaydet();">Kaydet</button>
+                <button class="btn btn-secondary ml-2" type="button" id="btnGuncelle" onclick="urunGuncelle();">Güncelle</button>
+                <button class="btn btn-secondary ml-2" type="button">Temizle</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(function () {
+            debugger;
+            var hub = $.connection.phub;
+            $.connection.hub.start().done(function() {
+                getData();
+            });
+            hub.client.getUrunData = function() {
+                getData();
+            };
+        });
+        function getUrun(Id) {
+            debugger;
+            $.get('@Url.Action("UrunGuncellemeEkran", "Urun")',
+                { 'Id': Id },
+                (data) => {
+
+                    $("#btnKaydet").attr("style", "display:none");
+                    $("#btnGuncelle").attr("style", "display:block");
+                    $("#exampleModalCenterTitle").text("Ürün Güncelle");
+                    $("#mdlUrunData").html(data);
+                    $("#btnUrunEkle").modal('show');
+                });
+        }
+
+        function getData() {
+            $.get('@Url.Action("UrunListesi", "Urun", new {area = "Panel"})',
+                (data) => {
+                    $("#tblurun").html(data);
+
+                });
+        }
+
+        $("#btnEkle").on('click',
+            function () {
+                debugger;
+                $.get('@Url.Action("UrunGuncellemeEkran","Urun",new {area="Panel"})',
+                    (data) => {
+                        $("#btnKaydet").attr("style", "display:block");
+                        $("#btnGuncelle").attr("style", "display:none");
+                        $("#exampleModalCenterTitle").text("Ürün Ekle");
+                        $("#mdlUrunData").html(data);
+                        $("#btnUrunEkle").modal('show');
+                    });
+
+
+
+
+
+            });
+
+        function ShowImagePreview(imageUploader, previewImage) {
+            if (imageUploader.files && imageUploader.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $(previewImage).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(imageUploader.files[0]);
+            }
+        }
+
+        function urunGuncelle() {
+         
+
+            var id = $("#ID").val();
+            var urunAdi = $("#txtUrunAdi").val();
+            var stok = $("#txtStok").val();
+            var birimFiyat = $("#txtbirimfiyat").val();
+            var resim = $("#Resimx").prop('files')[0];
+            var formData = new FormData();
+
+            formData.append('Id', id);
+            formData.append('UrunAdi', urunAdi);
+            formData.append('Stok', stok);
+            formData.append('BirimFiyat', birimFiyat);
+            formData.append('ResimPath', resim);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UrunGuncelle", "Urun", new {area = "Panel"})',
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    if (data) {
+                        UI.alertToaster("success", "Ürün güncelleme işlemi basarılı bir sekilde gerçekleşti", "Basarılı");
+                    } else {
+                        UI.alertToaster("warning", "Ürün güncelleme işlemi sırasında bir hata oluştu", "Basarılı");
+                    }
+                }
+            });
+        }
+
+        function urunKaydet() {
+          
+
+
+            var urunAdi = $("#txtUrunAdi").val();
+            var stok = $("#txtStok").val();
+            var birimFiyat = $("#txtbirimfiyat").val();
+            var resim = $("#Resimx").prop('files')[0];
+
+            var formData = new FormData();
+            formData.append('UrunAdi', urunAdi);
+            formData.append('Stok', stok);
+            formData.append('BirimFiyat', birimFiyat);
+            formData.append('ResimPath', resim);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UrunEkle", "Urun", new {area = "Panel"})',
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    if (data) {
+                        UI.alertToaster("success", "Ekleme işlemi basarılı bir sekilde gerçekleşti", "Basarılı");
+                    } else {
+                        UI.alertToaster("warning", "Ekleme işlemi sırasında bir hata oluştu", "Basarılı");
+                    }
+                }
+            });
+        }
+
+        function Remove(Id) {
+            $.post('@Url.Action("UrunSil", "Urun", new {area = "Panel"})', {'Id':Id},
+                (data) =>
+                {
+                    if (data) {
+                        UI.alertToaster("success", "Silme işlemi basarılı bir sekilde gerçekleşti", "Basarılı");
+                    } else {
+                        UI.alertToaster("warning", "Silme işlemi sırasında bir hata oluştu", "Basarılı");
+                    }
+                });
+        }
+
+
+    </script>
+}

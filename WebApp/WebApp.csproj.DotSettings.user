@@ -1,0 +1,29 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=AREAS_005CPANEL_005CVIEWS_005CSHARED_005CASSETS_005CCSS_005CICONS_002EMIN_002ECSS/@EntryIndexedValue">Areas\Panel\Views\Shared\assets\css\icons.min.css</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=AREAS_005CPANEL_005CVIEWS_005CSHARED_005CTASKESTI/@EntryIndexedValue">Areas\Panel\Views\Shared\Taskesti</s:String>
+	
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=UAQUES_005CIMAGES_005CICONS_005CICE_002D1_002EPNG/@EntryIndexedValue">Uaques\images\icons\ice-1.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CHOME_005CIMAGES_005CBACKGROUND_005CPAGE_002DTITLE_002EJPG/@EntryIndexedValue">Views\Home\images\background\page-title.jpg</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CHOME_005CIMAGES_005CICONS_005CBORDER_002D3_002EPNG/@EntryIndexedValue">Views\Home\images\icons\border-3.png</s:String>
+	
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CHOME_005CIMAGES_005CICONS_005CICE_002D1_002EPNG/@EntryIndexedValue">Views\Home\images\icons\ice-1.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CHOME_005CIMAGES_005CICONS_005CPATTERN_002D2_002EPNG/@EntryIndexedValue">Views\Home\images\icons\pattern-2.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CHOME_005CIMAGES_005CICONS_005CPATTERN_002D3_002EPNG/@EntryIndexedValue">Views\Home\images\icons\pattern-3.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CHOME_005CTASKESTI_005CIMAGES_005CRESIMLER_005C1757866_002EJPG/@EntryIndexedValue">Views\Home\Taskesti\images\resimler\1757866.jpg</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=VIEWS_005CSHARED_005CTASKESTI_005CIMAGES_005CBAYRAKLAR_005CTURKIYE_002EJPEG/@EntryIndexedValue">Views\Shared\Taskesti\images\bayraklar\turkiye.jpeg</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=DOCUMENTFILES_005CPANELTEMPLATE_005CASSETS_005CCSS_005CAUTOFILL_002EBOOTSTRAP4_002EMIN_002ECSS/@EntryIndexedValue"></s:String>
+	
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=VIEWS_005CSHARED_005CIMAGES_005CICONS_005CBORDER_002D4_002EPNG/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=AREAS_005CPANEL_005CVIEWS_005CSHARED_005CASSETS_005CCSS_005CICONS_002EMIN_002ECSS/@EntryIndexedValue">Areas\Panel\Views\Shared\assets\css\icons.min.css</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=AREAS_005CPANEL_005CVIEWS_005CSHARED_005CTASKESTI/@EntryIndexedValue">Areas\Panel\Views\Shared\Taskesti</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=DOCUMENTFILES_005CPANELTEMPLATE_005CASSETS_005CCSS_005CAUTOFILL_002EBOOTSTRAP4_002EMIN_002ECSS/@EntryIndexedValue">DocumentFiles\PanelTemplate\assets\css\autoFill.bootstrap4.min.css</s:String>
+	
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=UAQUES_005CIMAGES_005CICONS_005CICE_002D1_002EPNG/@EntryIndexedValue">Uaques\images\icons\ice-1.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CHOME_005CIMAGES_005CBACKGROUND_005CPAGE_002DTITLE_002EJPG/@EntryIndexedValue">Views\Home\images\background\page-title.jpg</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CHOME_005CIMAGES_005CICONS_005CBORDER_002D3_002EPNG/@EntryIndexedValue">Views\Home\images\icons\border-3.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CHOME_005CIMAGES_005CICONS_005CICE_002D1_002EPNG/@EntryIndexedValue">Views\Home\images\icons\ice-1.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CHOME_005CIMAGES_005CICONS_005CPATTERN_002D2_002EPNG/@EntryIndexedValue">Views\Home\images\icons\pattern-2.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CHOME_005CIMAGES_005CICONS_005CPATTERN_002D3_002EPNG/@EntryIndexedValue">Views\Home\images\icons\pattern-3.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CHOME_005CTASKESTI_005CIMAGES_005CRESIMLER_005C1757866_002EJPG/@EntryIndexedValue">Views\Home\Taskesti\images\resimler\1757866.jpg</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CSHARED_005CIMAGES_005CICONS_005CBORDER_002D4_002EPNG/@EntryIndexedValue">Views\Shared\images\icons\border-4.png</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CSHARED_005CTASKESTI_005CIMAGES_005CBAYRAKLAR_005CTURKIYE_002EJPEG/@EntryIndexedValue">Views\Shared\Taskesti\images\bayraklar\turkiye.jpeg</s:String></wpf:ResourceDictionary>

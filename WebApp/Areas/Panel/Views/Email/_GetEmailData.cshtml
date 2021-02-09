@@ -1,0 +1,35 @@
+﻿@model  IList<DataLayer.DataModels.EPostalar>
+
+
+
+
+<div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Siparis Email:</label>
+        <div class="col-md-10">
+            <select class="form-control" id="emailId">
+                <option value="0">E-Posta adresi seçiniz</option>
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Id">@item.Eposta</option>
+                }
+            </select>
+
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Konu:</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="emailkonu"/>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Mesaj:</label>
+        <div class="col-md-10">
+          <textarea class="form-control" cols="5" rows="5" id="emailmesaj"></textarea>
+        </div>
+    </div>
+
+</div>

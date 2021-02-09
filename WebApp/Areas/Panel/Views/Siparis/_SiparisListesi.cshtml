@@ -1,0 +1,173 @@
+﻿
+@using PagedList.Mvc
+@model Tuple<PagedList.IPagedList<DataLayer.ViewModels.SiparisListViewModel>, int>
+@{
+
+    var siparisDurum = (Dictionary<int, string>)ViewBag.SiparisDurum;
+    var siparistarihi = (string)ViewBag.siparistarihi;
+    var sehirId = (string)ViewBag.sehirId;
+    var index = (int)ViewBag.RecodNo;
+}
+
+
+@if (Model.Item1.Count > 0)
+{
+    <table class="table table-bordered table-sm" id="tblsiparisler">
+        <thead class="thead-dark">
+            <tr>
+                <th>Sıra</th>
+                <th>Ad Soyad</th>
+                <th>Eposta</th>
+                <th>Telefon</th>
+                <th>Urun Adı</th>
+                <th>Adet</th>
+                <th>Sehir</th>
+                <th>Sipariş Tarihi</th>
+                <th>Adres</th>
+                <th>Açıklama</th>
+                <th>Durum Bildir</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item1)
+            {
+                index++;
+                <tr>
+                    <td>@index</td>
+                    <td>@item.AdSoyad</td>
+                    <td>@item.Eposta</td>
+                    <td>@item.Telefon</td>
+                    <td>@item.UrunAdi</td>
+                    <td>@item.Adet</td>
+                    <td>@item.Il</td>
+                    <td>@item.Tarih</td>
+                    <td>
+                        <button class="btn btn-outline-info btn-sm" onclick="AdresMetin('@item.Id')">Açık Adres</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-info btn-sm" onclick="AciklamaMetin('@item.Id')">Açıklama</button>
+                    </td>
+                    <td>
+                        <select class="form-control" id="siparisDurumdata_@item.Id">
+                            <option value="0">Durum Seçiniz</option>
+                            @foreach (var itemx in siparisDurum)
+                            {
+                                if (item.SiparisDurum == itemx.Key)
+                                {
+                                    <option value="@itemx.Key" selected disabled>@itemx.Value</option>
+                                }
+                                else
+                                {
+                                    <option value="@itemx.Key">@itemx.Value</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-sm" onclick="DurumBildir('@item.Id');">Durum Bildir</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        <p>Aktif sipariş bulunmamaktadır.</p>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(siparistarihi) ||!string.IsNullOrEmpty(sehirId))
+{
+    @Html.PagedListPager(Model.Item1, page => "javascript:SiparisAra(" + page + ")")
+}
+else
+{
+    @Html.PagedListPager(Model.Item1, page => "javascript:getData(" + page + ")")
+}
+
+
+
+<div class="modal fade bs-example-modal-center" id="siparisModalMetin" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="siparismdltitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="mtnBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(".pagination li a").addClass("page-link");
+    $('.pagination li').each(function() {
+        let aktif = $(this).attr('class');
+        if (aktif === "active") {
+            $(this).find('a').attr('style', 'color:red; font-weight:bold');
+        }
+    });
+    //   let durumId = 0;
+    //$("#siparisDurumdata").on('change',
+    //    (e) => {
+    //        debugger;
+    //        durumId = e.target.value;
+    //    });
+
+
+
+    function DurumBildir(Id) {
+        debugger;
+        var durumId = $(`#siparisDurumdata_${Id}`).val();
+        $.post('@Url.Action("PanelDurumBildir", "Siparis",new {area="Panel"})',
+            {
+                'siparisId': Id,
+                'durumId':durumId
+            },
+            (data) => {
+                if (data) {
+                    debugger;
+                    durumId = '';
+                    getData(1);
+                    UI.alertToaster("success", "Sipariş bilgilendirme mesajı gönderildi", "Basarılı");
+                } else {
+                    UI.alertToaster("warning", "Bir hata oluştu", "Dikkat");
+                }
+            });
+    }
+
+
+    function AciklamaMetin(Id) {
+        $.get('@Url.Action("GetAciklamaMetin","Siparis",new {area="Panel"})',
+            { 'Id': Id },
+            (data) => {
+                $("#siparismdltitle").text("Sipariş Açıklama");
+                $("#mtnBody").html(data);
+                $("#siparisModalMetin").modal('show');
+            });
+    }
+
+
+    function AdresMetin(Id) {
+        $.get('@Url.Action("GetAdresMetin","Siparis",new {area="Panel"})',
+            { 'Id': Id },
+            (data) => {
+                $("#siparismdltitle").text("Açık Adres");
+                $("#mtnBody").html(data);
+                $("#siparisModalMetin").modal('show');
+            });
+    }
+
+
+
+
+
+</script>

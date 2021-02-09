@@ -1,0 +1,168 @@
+﻿<!doctype html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Starter Page | Skote - Responsive Bootstrap 4 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+
+    <link href="~/DocumentFiles/PanelTemplate/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/DocumentFiles/PanelTemplate/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/DocumentFiles/PanelTemplate/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="~/DocumentFiles/PanelTemplate/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/DocumentFiles/PanelTemplate/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/toastr/build/toastr.min.css")" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body data-sidebar="dark">
+
+
+    <div id="layout-wrapper">
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+                        <a href="@Url.Action("PanelAdmin","PanelHome",new {area="Panel"})" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="~/Taskesti/images/resimler/logo.png" alt="" height="35">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="~/Taskesti/images/resimler/logo.png" alt="" height="35">
+                            </span>
+                        </a>
+
+                        <a href="@Url.Action("PanelAdmin","PanelHome",new {area="Panel"})" class="logo logo-light  mt-4">
+                            <span class="logo-sm">
+                                <img src="~/Taskesti/images/resimler/logo.png" alt="" height="22">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="~/Taskesti/images/resimler/logo.png" alt="" height="75">
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="btnmail">
+                        <i class="fa fa-fw fa-mail-bulk"></i>
+                    </button>
+                </div>
+                <div class="d-flex">
+                    <div class="dropdown d-none d-lg-inline-block ml-1">
+                        @Html.ActionLink("Çıkış Yap", "LogOff", "PanelGiris")
+                    </div>
+
+
+                    <div class="dropdown d-inline-block">
+
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
+
+            <div data-simplebar class="h-100">
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li class="menu-title" key="t-menu">Menu</li>
+                        <li>
+                            <a href="@Url.Action("Index","Urun",new {area="Panel"})" class="waves-effect">
+                                <i class="bx bx-file"></i>
+                                <span key="t-file-manager">Ürün İşlemleri</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("SiparisIslem","Siparis",new {area="Panel"})" class="waves-effect">
+                                <i class="bx bx-file"></i>
+                                <span key="t-file-manager">Sipariş İşlemleri</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("BayiIslem","Bayi",new {area="Panel"})" class="waves-effect">
+                                <i class="bx bx-file"></i>
+                                <span key="t-file-manager">Bayi İşlemleri</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("EmailIslem","Email",new {area="Panel"})" class="waves-effect">
+                                <i class="bx bx-file"></i>
+                                <span key="t-file-manager">Email İşlemleri</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("SayfaIcerikIslem","Icerik",new {area="Panel"})" class="waves-effect">
+                                <i class="bx bx-file"></i>
+                                <span key="t-file-manager">İçerik İşlemleri</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <div class="main-content">
+            @RenderBody()
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Taşkesti.
+                        </div>
+                        <div class="col-sm-6">
+                            @*<div class="text-sm-right d-none d-sm-block">
+                                    Design & Develop by Themesbrand
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </div>
+    <div class="rightbar-overlay"></div>
+
+
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/jquery/jquery.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/node-waves/waves.min.js"></script>
+    <script src="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/sweetalert2/sweetalert2.min.js")"></script>
+
+    <script src="~/DocumentFiles/PanelTemplate/assets/js/app.js"></script>
+    <script src="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/toastr/build/toastr.min.js")"></script>
+    <script src="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/datatables.net/js/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js")"></script>
+    <script src="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js")"></script>
+    <script src="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js")"></script>
+    <script src="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js")"></script>
+    <script src="@Url.Content("~/DocumentFiles/PanelTemplate/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js")"></script>
+    <script src="~/Areas/Panel/Scripts/ui.js"></script>
+    <script src="~/lib/signalr/jquery.signalR.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    @RenderSection("Scripts", false)
+    <script type="text/javascript">
+ 
+    
+    </script>
+
+
+</body>
+</html>

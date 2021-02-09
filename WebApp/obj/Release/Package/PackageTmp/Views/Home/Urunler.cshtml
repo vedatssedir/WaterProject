@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "Ürünler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #contactHeader {
+        background: url(../../Taskesti/images/resimler/dag2.jpg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /*background-position: center;*/
+        box-shadow: 10px 10px 10px #a8d1ee;
+        border-radius: 20px 20px 20px 20px;
+        width: 98%;
+        margin: 15px;
+    }
+</style>
+<section class="page-title centred" id="contactHeader">
+    <div class="auto-container">
+        <div class="content-box" style="background-color:rgb(2 66 172);opacity: 0.6">
+            <h1 style="color: #f8f8f8;">ÜRÜNLER</h1>
+            <div class="text" style="color: #f8f8f8;">Size daha iyi hizmet verebilmemiz için fikir, görüş ve önerilerimizi bizimle paylaşabilirsiniz.</div>
+        </div>
+    </div>
+</section>
+
+<section class="shop-page-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <div class="col-md-12 col-sm-12 content-side">
+                <div class="our-shop">
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="single-shop-block">
+                                <div class="inner-box">
+                                    <div class="border-one"></div>
+                                    <div class="border-two"></div>
+                                    <figure class="image-box">
+                                        <img style="height:300px;" src="~/Taskesti/images/resimler/330mlsise.png" alt="">
+                                    </figure>
+                                    <h3><a href="#">330ml Cam Şişe</a></h3>
+                                    <div class="cart-btn"><a href="javascript:getData();"><i class="flaticon-water-1"></i>Ürün Detay</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 shop-block">
+                            <div class="single-shop-block">
+                                <div class="inner-box">
+                                    <div class="border-one"></div>
+                                    <div class="border-two"></div>
+                                    <figure class="image-box">
+                                        <img style="height:300px;" src="~/Taskesti/images/resimler/750mlCamsise.png" alt="">
+                                    </figure>
+                                    <h3><a href="#">750ml Cam Şişe</a></h3>
+                                    <div class="cart-btn"><a href="#"><i class="flaticon-water-1"></i>Ürün Detay</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 shop-block">
+                            <div class="single-shop-block">
+                                <div class="inner-box">
+                                    <div class="border-one"></div>
+                                    <div class="border-two"></div>
+                                    <figure class="image-box">
+                                        <img style="height:300px;" src="~/Taskesti/images/resimler/250mkBardak.png" alt="">
+                                    </figure>
+                                    <h3><a href="#">250ml Bardak Su</a></h3>
+                                    <div class="cart-btn"><a href="#"><i class="flaticon-water-1"></i>Ürün Detay</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 shop-block">
+                            <div class="single-shop-block">
+                                <div class="inner-box">
+                                    <div class="border-one"></div>
+                                    <div class="border-two"></div>
+                                    <figure class="image-box">
+                                        <img style="height:300px;" src="~/Taskesti/images/resimler/250mkBardak.png" alt="">
+                                    </figure>
+                                    <h3><a href="#">200ml Bardak Su</a></h3>
+                                    <div class="cart-btn"><a href="#"><i class="flaticon-water-1"></i>Ürün Detay</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 shop-block">
+                            <div class="single-shop-block">
+                                <div class="inner-box">
+                                    <div class="border-one"></div>
+                                    <div class="border-two"></div>
+                                    <figure class="image-box">
+                                        <img style="height:300px;" src="~/Taskesti/images/resimler/19ltdamacana.png" alt="">
+                                    </figure>
+                                    <h3><a href="#">19L Polikarbon Damacana</a></h3>
+                                    <div class="cart-btn"><a href="#"><i class="flaticon-water-1"></i>Ürün Detay</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 shop-block">
+                            <div class="single-shop-block">
+                                <div class="inner-box">
+                                    <div class="border-one"></div>
+                                    <div class="border-two"></div>
+                                    <figure class="image-box">
+                                        <img style="height:300px;" src="~/Taskesti/images/resimler/15ltcamdamacana.png" alt="">
+                                    </figure>
+                                    <h3><a href="#">15L Cam Damacana</a></h3>
+                                    <div class="cart-btn"><a href="javascript:getData();"><i class="flaticon-water-1"></i>Ürün Detay</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<style>
+    .modal-xl2 {
+        max-width: 60%;
+    }
+</style>
+
+<div class="modal fade bs-example-modal-xl" id="testmodal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl2">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">ÜRÜN DETAY</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="product-details-content">
+                        <div class="auto-container">
+                            <div class="row clearfix">
+                                <div class="col-lg-6 col-md-12 col-sm-12 image-column" align="center" style="margin-top:10%; ">
+                                    <figure class="image-box"><a href="images/resource/shop/shop-details.png" class="lightbox-image"><img src="~/Taskesti/images/resimler/330mlsise.png" alt=""></a></figure>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                                    <div class="content-box">
+                                        <h2>Naturally Spark Water</h2>
+                                        <span class="size">2 x 5L Bottles</span>
+                                        <div class="text">Exercitation lamco laboris aliquip duis aute irure dolor in
+                                            reprehenderid voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa.</div>
+                                        <div class="price">$17.00 <del>$29.50</del></div>
+                                        <div class="select-box">
+                                            <select class="selectmenu" id="ui-id-1">
+                                                <option selected="selected">Select Your Bottle Options</option>
+                                                <option>Commercial Water Services</option>
+                                                <option>Water Filtration</option>
+                                                <option>Minarel Water Services</option>
+                                            </select>
+                                        </div>
+                                        <div class="addto-cart-box clearfix">
+                                            <div class="item-quantity">
+                                                <input class="quantity-spinner" type="text" value="1" name="quantity">
+                                            </div>
+                                            <div class="cart-btn"><button type="button"><i class="flaticon-online-shop"></i>buy now</button></div>
+                                        </div>
+                                        <ul class="categories list-item">
+                                            <li>Categories:</li>
+                                            <li><a href="#">Natural Water</a>,</li>
+                                            <li><a href="#">Bottle</a></li>
+                                        </ul>
+                                        <ul class="categories list-item">
+                                            <li>Tags:</li>
+                                            <li><a href="#">Natural Water</a>,</li>
+                                            <li><a href="#">Bottle</a></li>
+                                        </ul>
+                                        <ul class="product-id list-item">
+                                            <li>Product ID:</li>
+                                            <li>3638</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@section scripts
+{
+    <script type="text/javascript">
+        function getData() {
+            debugger;
+            $("#testmodal").modal("show");
+        }
+
+
+    </script>
+}

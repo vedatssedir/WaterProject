@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TaskestiDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ilceler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IlceAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SehirId" Type="Int32" />
+    <NavigationProperty Name="Sehirler" Relationship="Self.FK_Ilceler_Sehirler" FromRole="Ilceler" ToRole="Sehirler" />
+    <NavigationProperty Name="Bayiler" Relationship="TaskestiDbModel.FK_Bayiler_Ilceler" FromRole="Ilceler" ToRole="Bayiler" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KullaniciRol" Relationship="Self.FK_KullaniciRol_Kullanici" FromRole="Kullanici" ToRole="KullaniciRol" />
+  </EntityType>
+  <EntityType Name="KullaniciRol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+    <Property Name="Rolid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_KullaniciRol_Kullanici" FromRole="KullaniciRol" ToRole="Kullanici" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_KullaniciRol_Rol" FromRole="KullaniciRol" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RolAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KullaniciRol" Relationship="Self.FK_KullaniciRol_Rol" FromRole="Rol" ToRole="KullaniciRol" />
+  </EntityType>
+  <EntityType Name="Sehirler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SehirAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ilceler" Relationship="Self.FK_Ilceler_Sehirler" FromRole="Sehirler" ToRole="Ilceler" />
+    <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Sehirler" FromRole="Sehirler" ToRole="Siparis" />
+    <NavigationProperty Name="Bayiler" Relationship="TaskestiDbModel.FK_Bayiler_Sehirler" FromRole="Sehirler" ToRole="Bayiler" />
+  </EntityType>
+  <EntityType Name="Siparis">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiparisTarih" Type="DateTime" Precision="3" />
+    <Property Name="AdSoyad" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="EPosta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UrunId" Type="Int32" />
+    <Property Name="Adet" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Adres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="SehirId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Sehirler" Relationship="Self.FK_Siparis_Sehirler" FromRole="Siparis" ToRole="Sehirler" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_Siparis_Urun" FromRole="Siparis" ToRole="Urun" />
+    <Property Name="SiparisDurum" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UrunResmi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Stok" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BirimFiyat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Urun" FromRole="Urun" ToRole="Siparis" />
+  </EntityType>
+  <Association Name="FK_Ilceler_Sehirler">
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="0..1" />
+    <End Role="Ilceler" Type="Self.Ilceler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ilceler">
+        <PropertyRef Name="SehirId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciRol_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KullaniciRol">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KullaniciRol">
+        <PropertyRef Name="Rolid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Sehirler">
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="1" />
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="SehirId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Urun">
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TaskestiDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ilceler" EntityType="Self.Ilceler" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+    <EntitySet Name="KullaniciRol" EntityType="Self.KullaniciRol" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="Sehirler" EntityType="Self.Sehirler" />
+    <EntitySet Name="Siparis" EntityType="Self.Siparis" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Urun" EntityType="Self.Urun" />
+    <AssociationSet Name="FK_Ilceler_Sehirler" Association="Self.FK_Ilceler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirler" />
+      <End Role="Ilceler" EntitySet="Ilceler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciRol_Kullanici" Association="Self.FK_KullaniciRol_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="KullaniciRol" EntitySet="KullaniciRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciRol_Rol" Association="Self.FK_KullaniciRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="KullaniciRol" EntitySet="KullaniciRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Sehirler" Association="Self.FK_Siparis_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirler" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Urun" Association="Self.FK_Siparis_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TaskestiDbModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TaskestiDbModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Bayiler" EntityType="TaskestiDbModel.Bayiler" />
+    <AssociationSet Name="FK_Bayiler_Sehirler" Association="TaskestiDbModel.FK_Bayiler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirler" />
+      <End Role="Bayiler" EntitySet="Bayiler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bayiler_Ilceler" Association="TaskestiDbModel.FK_Bayiler_Ilceler">
+      <End Role="Ilceler" EntitySet="Ilceler" />
+      <End Role="Bayiler" EntitySet="Bayiler" />
+    </AssociationSet>
+    <EntitySet Name="EPostalar" EntityType="TaskestiDbModel.EPostalar" />
+    <EntitySet Name="Icerikler" EntityType="TaskestiDbModel.Icerikler" />
+    <EntitySet Name="Sayfalar" EntityType="TaskestiDbModel.Sayfalar" />
+    <AssociationSet Name="FK_Icerikler_Sayfalar" Association="TaskestiDbModel.FK_Icerikler_Sayfalar">
+      <End Role="Sayfalar" EntitySet="Sayfalar" />
+      <End Role="Icerikler" EntitySet="Icerikler" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Bayiler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SirketAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Eposta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Adresi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SehirId" Type="Int32" />
+    <Property Name="IlceId" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Sehirler" Relationship="TaskestiDbModel.FK_Bayiler_Sehirler" FromRole="Bayiler" ToRole="Sehirler" />
+    <NavigationProperty Name="Ilceler" Relationship="TaskestiDbModel.FK_Bayiler_Ilceler" FromRole="Bayiler" ToRole="Ilceler" />
+  </EntityType>
+  <Association Name="FK_Bayiler_Sehirler">
+    <End Type="TaskestiDbModel.Sehirler" Role="Sehirler" Multiplicity="0..1" />
+    <End Type="TaskestiDbModel.Bayiler" Role="Bayiler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bayiler">
+        <PropertyRef Name="SehirId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bayiler_Ilceler">
+    <End Type="TaskestiDbModel.Ilceler" Role="Ilceler" Multiplicity="0..1" />
+    <End Type="TaskestiDbModel.Bayiler" Role="Bayiler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ilceler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bayiler">
+        <PropertyRef Name="IlceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EPostalar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Eposta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Konu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Icerikler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SayfaId" Type="Int32" />
+    <Property Name="Baslik" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AltBaslik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AltBaslikText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Resim1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Resim2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Resim3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Resim4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="Sıra" Type="Int32" />
+    <NavigationProperty Name="Sayfalar" Relationship="TaskestiDbModel.FK_Icerikler_Sayfalar" FromRole="Icerikler" ToRole="Sayfalar" />
+    <Property Name="Video1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Video2" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Video3" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Sayfalar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SayfaAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Icerikler" Relationship="TaskestiDbModel.FK_Icerikler_Sayfalar" FromRole="Sayfalar" ToRole="Icerikler" />
+  </EntityType>
+  <Association Name="FK_Icerikler_Sayfalar">
+    <End Type="TaskestiDbModel.Sayfalar" Role="Sayfalar" Multiplicity="0..1" />
+    <End Type="TaskestiDbModel.Icerikler" Role="Icerikler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sayfalar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Icerikler">
+        <PropertyRef Name="SayfaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

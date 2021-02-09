@@ -1,0 +1,133 @@
+﻿
+
+
+<header class="main-header">
+    <div class="outer-container">
+        <div class="header-upper clearfix">
+            <div class="upper-left pull-left clearfix">
+                <figure class="logo-box">
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Index", "Home")">
+                                    <img style="height:90px" src="~/Taskesti/images/resimler/logo.png" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <h1 class="logox" style="color: white; font-size:60px;">taşkesti</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </figure>
+
+            </div>
+            <div class="upper-right pull-right clearfix">
+                <div class="menu-area pull-left">
+                    <!--Mobile Navigation Toggler-->
+                    <div class="mobile-nav-toggler">
+                        <i class="icon-bar"></i>
+                        <i class="icon-bar"></i>
+                        <i class="icon-bar"></i>
+                    </div>
+                    <nav class="main-menu navbar-expand-md navbar-light"  style="margin-top:15px">
+                        <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                            <ul class="navigation clearfix">
+                                <li class="dropdown">
+                                    <a href="@Url.Action("Index","Home")"  style="font-size:20px; color:white !important">ANASAYFA</a>
+
+                                </li>
+                                <li class="dropdown">
+                                    <a href="@Url.Action("Kurumsal","Home")"  style="font-size:20px; color:white !important">KURUMSAL</a>
+
+                                </li>
+                                <li class="dropdown">
+                                    <a href="@Url.Action("Urunler","Home")"  style="font-size:20px; color:white !important">ÜRÜNLERİMİZ</a>
+
+                                </li>
+                                <li class="dropdown">
+                                    <a href="@Url.Action("SiparisVer","Home")"  style="font-size:20px;color:white !important">SİPARİŞ VER</a>
+
+                                </li>
+                                <li class="dropdown">
+                                    <a href="@Url.Action("Belgeler","Home")"  style="font-size:20px;color:white !important">BELGELERİMİZ</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="@Url.Action("Contact","Home")"  style="font-size:20px;color:white !important">İLETİŞİM</a>
+                                </li>
+                                @*<li class="dropdown">
+                                    <select class="form-control">
+                                        <option>TR</option>
+                                        <option>EN</option>
+                                        <option>AR</option>
+                                    </select>
+                                </li>*@
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                @*<div class="menu-right-content pull-left clearfix">
+                    <div class="search-box-outer">
+                        <div class="dropdown">
+                            <button class="search-box-btn" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-flag"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
+                                <li class="panel-outer">
+
+                                    <div class="form-container">
+                                        <a href="#">TR</a>
+                                        <a href="#">EN</a>
+                                        <a href="#">AR</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a href="#" style="z-index:1000; color:white"><i id="volume" class="fa fa-volume-up fa-2x"></i></a>
+                        </div>
+
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+
+    <!--sticky Header-->
+    <div class="sticky-header">
+        <div class="auto-container clearfix">
+            <figure class="logo-box">
+                <a href="@Url.Action("Index", "Home")">
+                    <img style="height:50px; position:fixed" src="~/Taskesti/images/resimler/logo.png" alt="">
+                </a>
+            </figure>
+            <div class="menu-area">
+                <nav class="main-menu clearfix">
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="mobile-menu">
+    <div class="menu-backdrop"></div>
+    <div class="close-btn"><i class="fas fa-times"></i></div>
+
+    <nav class="menu-box">
+        <div class="nav-logo"><a href="/"><img src="~/Taskesti/images/resimler/logo.png" alt="" title=""></a></div>
+        <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+        <div class="contact-info">
+            <h4>İletişim Bilgileri</h4>
+            <ul>
+                <li><i class="fas fa-map-marker-alt text-white"></i>  Tekstilkent Cad. Koza Plaza B Blok No:29 Esenler / İstanbul</li>
+                <li><i class="fas fa-phone"></i> <strong>Tel No: </strong> <a href="tel:08508881414">0850 888 14 14</a></li>
+                <li><i class="fas fa-envelope"></i> <strong>E-posta:</strong> <a href="mailto:bilgi@taskestisu.com"> bilgi@taskestisu.com</a></li>
+                <li><i class="fas fa-envelope"></i> <strong>E-posta:</strong> <a href="mailto:export@taskestisu.com"> export@taskestisu.com</a></li>
+            </ul>
+        </div>
+        <div class="social-links">
+            <ul class="clearfix">
+                <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
+                <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+                <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

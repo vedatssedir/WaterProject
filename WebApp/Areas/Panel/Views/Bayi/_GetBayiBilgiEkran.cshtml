@@ -1,0 +1,112 @@
+﻿
+@using DataLayer.DataModels
+@model DataLayer.ViewModels.BayiGüncelleAndEkleViewModel
+    
+@{
+    var sehirler = (IList<Sehirler>) ViewBag.sehirler;
+    var ilceler = (IList<Ilceler>) ViewBag.ilceler;
+}
+
+
+
+<input type="hidden" id="ID" value="@Model.Id"/>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">Şehir:</label>
+                <div class="col-md-9">
+                    <select class="form-control" id="sehirIds" onchange="GetIlceler(this.value)">
+                        <option value="0">Şehir Seçiniz</option>
+                        @foreach (var item in sehirler)
+                        {
+                            if (item.Id == Model.SehirId)
+                            {
+                                <option value="@item.Id" selected="">@item.SehirAdi</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.SehirAdi</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            @if (Model.Id != 0)
+            {
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">İlce:</label>
+                    <div class="col-md-9">
+                        <select class="form-control" id="ilceIds">
+                            <option value="0">Şehir Seçiniz</option>
+                            @foreach (var item in ilceler)
+                            {
+                                if (item.Id == Model.IlceId)
+                                {
+                                    <option value="@item.Id" selected="">@item.IlceAdi</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">İlce:</label>
+                    <div class="col-md-9">
+                        <select class="form-control" id="ilceIds">
+                            
+                        </select>
+                    </div>
+                </div>
+            }
+            
+            <div class="form-group row">
+                <label class="col-form-label col-md-3">Eposta</label>
+                <div class="col-md-9">
+                    <input type="email" class="form-control" id="eposta" value="@Model.Eposta"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-form-label col-md-3">Telefon:</label>
+                <div class="col-md-9">
+                    <input type="tel" class="form-control" id="telefon" value="@Model.Telefon"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-md-3">Şirket Adı:</label>
+                <div class="col-md-9">
+                    <input type="email" class="form-control" id="sirketadi" value="@Model.SirketAdi"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-md-3">Adres:</label>
+                <div class="col-md-9">
+                    <textarea id="adres" class="form-control" rows="3" cols="3">@Model.Adres</textarea>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+ 
+  
+</div>
+<script type="text/javascript">
+
+    function GetIlceler(sehirId) {
+        debugger;
+        $.get('@Url.Action("GetSehirler","Bayi",new {area="Panel"})',
+            { 'sehirId': sehirId },
+            (data) => {
+                debugger;
+                $("#ilceIds").empty();
+                $("#ilceIds").append(`<option value=${0}>İlçe Seçiniz</option>`);
+                $("#ilceIds").append(data);
+            });
+    }
+
+</script>

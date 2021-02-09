@@ -1,0 +1,289 @@
+﻿@model IList<DataLayer.DataModels.Icerikler>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var count = 0;
+    var modelCount = Model.Count;
+}
+
+<section class="main-slider">
+    <video id="videox" autoplay="autoplay" style="width:100%" loop onloadstart="this.volume=0.6">
+        @*<source src="~/Taskesti/video/i4ihhu.mp4" type="video/mp4" />*@
+        <source src="~/Taskesti/video/tassu2.mp4" type="video/mp4" />
+        @*<source src="~/Taskesti/video/ub0ubq.mp4" type="video/mp4" />*@
+    </video>
+
+    <div class="main-slider-carousel owl-carousel owl-theme" style="position: absolute;margin-top:-58%">
+        <div class="slide">
+            <div class="large-container">
+                <div id="starshine1">
+                    <div class="shine shine-two shine-1">1</div>
+                    <div class="shine shine-two shine-2">2</div>
+                    <div class="shine shine-two shine-3">3</div>
+                </div>
+                <div class="row clearfix" style="margin-top:95px;">
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                        <div class="content-box">
+                            <h1 style="color: white">DOGAL & MİNARELLİ SU</h1>
+                            <div class="btn-box">
+                                <a href="@Url.Action("Urunler","Home")" class="theme-btn style-one">ÜRÜNLERİ İNCELE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                        <div class="image-box">
+                            <div class="bg-layer"></div>
+                            <figure class="image"><img src="~/Taskesti/images/resimler/cam.png" alt="" style="width:100%"></figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="large-container">
+                <div id="starshine1">
+                    <div class="shine shine-two shine-1">1</div>
+                    <div class="shine shine-two shine-2">2</div>
+                    <div class="shine shine-two shine-3">3</div>
+                </div>
+                <div class="row clearfix" style="margin-top:95px;">
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                        <div class="content-box">
+                            <h1 style="color: white">TABİATIN & KALBİ BOLUDAN</h1>
+                            <div class="btn-box">
+                                <a href="@Url.Action("Urunler","Home")" class="theme-btn style-one">ÜRÜNLERİ İNCELE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                        <div class="image-box">
+                            <div class="bg-layer"></div>
+                            <figure class="image"><img src="~/Taskesti/images/resimler/damacaplastik.png" alt="" style="width:100%"></figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="large-container">
+                <div id="starshine2">
+                    <div class="shine shine-two shine-1">1</div>
+                    <div class="shine shine-two shine-2">2</div>
+                    <div class="shine shine-two shine-3">3</div>
+                </div>
+                <div class="row clearfix" style="margin-top:95px;">
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                        <div class="content-box">
+                            <h1 style="color: white">Berrak & renksiz, kokusuz</h1>
+                            <div class="btn-box">
+                                <a href="@Url.Action("Urunler","Home")" class="theme-btn style-one">ÜRÜNLERİ İNCELE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                        <div class="image-box">
+                            <div class="bg-layer"></div>
+                            <figure class="image"><img src="~/Taskesti/images/resimler/tumsular.png" alt="" style="width:100%"></figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-shap">
+    </div>
+    <div style="clear:both"></div>
+</section>
+<br />
+
+
+
+@foreach (var item in Model)
+{
+    count++;
+    if (item.Sıra == 2)
+    {
+        <div class="clearfix"></div>
+        <section style="margin-top: 50px;">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8 offset-2">
+                        <div class="title-inner">
+                            <div class="sec-title text-center"><h1 style="color:white;font-weight:bold">@item.Baslik</h1></div>
+                        </div>
+                        <hr style="background-color: black" />
+                        <p style="font-size: 25px; font-weight:bold; text-align:justify">
+                            @item.Text
+                        </p>
+
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+        </section>
+    }
+
+    if (item.Sıra == 3)
+    {
+        <section class="video-section">
+            <div class="auto-container">
+                <div class="upper-content">
+                    <div id="video_block_one">
+                        <div class="video-inner">
+                            <div class="video-box wow fadeInLeft" data-wow-delay="00ms" data-wow-duration="1500ms" style="background-image: url(../../Taskesti/images/background/video-1.jpg);">
+                                <div class="video-btn">
+                                    <a href="@item.Video1" class="lightbox-image" data-caption=""><i class="flaticon-play-button-arrowhead"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-title clearfix">
+                        <div class="title-inner">
+                            <div class="sec-title"><h1 style="color:white; font-weight:bold;">@item.AltBaslik</h1></div>
+                        </div>
+                        <div class="text-inner">
+                            <div class="text" style="color: #f3f9ff;">
+                                <p style="font-size: 25px; color: black; font-weight:bold; text-align:justify">
+                                    @item.AltBaslikText
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lower-content">
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-6 col-sm-12 image-column">
+                            <figure class="image-box wow flipInY" data-wow-delay="300ms" data-wow-duration="1500ms"><a href="~/@item.Resim1" class="lightbox-image" data-fancybox="gallery"><img src="~/@item.Resim1" alt=""></a></figure>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 image-column">
+                            <figure class="image-box wow flipInY" data-wow-delay="300ms" data-wow-duration="1500ms"><a href="~/@item.Resim2" class="lightbox-image" data-fancybox="gallery"><img src="~/@item.Resim2" alt=""></a></figure>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 image-column">
+                            <figure class="image-box wow flipInY" data-wow-delay="300ms" data-wow-duration="1500ms"><a href="~/@item.Resim3" class="lightbox-image" data-fancybox="gallery"><img src="~/@item.Resim3" alt=""></a></figure>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    if (count == modelCount)
+    {
+        break;
+    }
+
+}
+
+
+
+
+
+
+<section class="composition-section" style="background-color:#f3f9ff">
+    <div class="border-shap">
+        <div class="border-1" style="background-image: url(../../Taskesti/images/icons/border-1.png);"></div>
+        <div class="border-2" style="background-image: url(../../Taskesti/images/icons/border-2.png);"></div>
+    </div>
+    <div class="auto-container">
+        <div class="sec-title text-center">
+            <h1 style="color: white; font-weight: bold;">ALKALİ SU</h1>
+        </div>
+        <div class="upper-content">
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12 col-sm-12 left-column">
+                    <div class="inner-box">
+                        <div class="single-item wow slideInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <figure class="icon-box">
+                                @*<span>K+</span>*@
+                                <img src="~/Taskesti/images/resimler/logo.png" style="height:92px" alt="">
+                            </figure>
+                            <h3><a href="#">Potassium</a></h3>
+                            <h5>2.5 mg/L</h5>
+                        </div>
+                        <div class="single-item wow slideInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+                            <figure class="icon-box">
+                                @*<span>Fl</span>*@
+                                <img src="~/Taskesti/images/resimler/logo.png" style="height:92px" alt="">
+                            </figure>
+                            <h3><a href="#">Fluoride</a></h3>
+                            <h5>0.5 mg/L</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 image-column">
+                    <div class="image-box">
+                        <div class="pattern-bg" style="background-image: url(../../Taskesti/images/icons/pattern-2.png);"></div>
+                        <figure class="image wow slideInUp" data-wow-delay="0ms" data-wow-duration="1500ms" style="margin-left:55px"><img src="../../Taskesti/images/resource/water-glass-1.png" alt=""></figure>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 right-column">
+                    <div class="inner-box">
+                        <div class="single-item wow slideInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <figure class="icon-box">
+                                @*<span>Cl</span>*@
+                                <img src="~/Taskesti/images/resimler/logo.png" style="height:92px" alt="">
+                            </figure>
+                            <h3><a href="#">Chloride</a></h3>
+                            <h5>350a mg/L</h5>
+                        </div>
+                        <div class="single-item wow slideInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
+                            <figure class="icon-box">
+                                @*<span>Mg</span>*@
+                                <img src="~/Taskesti/images/resimler/logo.png" style="height:92px" alt="">
+                            </figure>
+                            <h3><a href="#">Magnesium</a></h3>
+                            <h5>14.5 mg/L</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lower-content clearfix">
+            <div class="single-item wow slideInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                <h3>Nitrates</h3>
+                <h5>2 mg/L</h5>
+            </div>
+            <div class="single-item wow slideInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+                <h3>Bicarbonates</h3>
+                <h5>157 mg/L</h5>
+            </div>
+            <div class="single-item wow slideInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
+                <h3>Sulphates</h3>
+                <h5>5.6 mg/L</h5>
+            </div>
+            <div class="single-item wow slideInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
+                <h3>Sodium</h3>
+                <h5>0.4 mg/L</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+@foreach (var item in Model.Where(x => x.Sıra == 4))
+{
+    <section class="info-section bg-color-2">
+        <div class="image-layer wow slideInLeft" data-wow-delay="0ms" data-wow-duration="1500ms" style="margin-top:150px; margin-left: 50px;">
+            <img class="img-thumbnail" style="width:50%" src="../../Taskesti/images/resimler/@item.Resim1" alt="">
+        </div>
+        <div class="bg-pattern" style="background-image: url(../../Taskesti/images/icons/pattern-3.png);"></div>
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-xl-6 col-lg-12 col-md-12 offset-xl-6 content-column">
+                    <div id="content_block_one">
+                        <div class="content-box">
+                            <div class="sec-title"><h1 style="color:white">@item.Baslik</h1></div>
+                            <div class="text-inner">
+                                <div class="text" style="color: #f3f9ff;">
+                                    <p style="font-size: 25px; color: black; font-weight:700; text-align:inherit">
+                                        @item.Text
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+

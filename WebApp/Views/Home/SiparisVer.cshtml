@@ -1,0 +1,210 @@
+﻿@using DataLayer.DataModels
+
+
+@{
+    ViewBag.Title = "SiparisVer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var urunler = (IList<Urun>)ViewBag.Urunler;
+    var iller = (IList<Sehirler>)ViewBag.Iller;
+    var ilceler = (IList<Ilceler>)ViewBag.ilceler;
+}
+<link href="~/Taskesti/css/bootstrap.css" rel="stylesheet" />
+<style>
+    #contactHeader {
+        background: url(../../Taskesti/images/resimler/dag3.jpg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 10px 10px 10px #a8d1ee;
+        border-radius: 20px 20px 20px 20px;
+        width: 98%;
+        margin: 15px;
+    }
+</style>
+<section class="page-title centred" id="contactHeader">
+    <div class="auto-container">
+        <div class="content-box" style="background-color:rgb(2 66 172);opacity: 0.6">
+            <h1 style="color: #f8f8f8;">SİPARİŞ VER</h1>
+          
+        </div>
+    </div>
+</section>
+
+<section class="mt-5 mb-5 contact-section sec-pad">
+
+    <div class="container-fluid ml-3">
+        <div class="row">
+            <div class="col-md-6 border-right">
+                <h2 class="title-text" style="color: #346bae">SİPARİŞ VERİN</h2>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3"><strong>ADINIZ VE SOYADINIZ:</strong></label>
+                    <div class="col-md-8">
+                        <input type="text" name="username" id="adsoyad" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3"><strong>EPosta:</strong></label>
+                    <div class="col-md-8">
+                        <input type="email" name="email" id="email" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3"><strong>Telefon:</strong></label>
+                    <div class="col-md-8">
+                        <input type="text" name="subject" id="phone" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3"><strong>Adet:</strong></label>
+                    <div class="col-md-8">
+                        <input type="number" name="subject" id="adet" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3"><strong>Ürünler:</strong></label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="urunId">
+                            <option value="0" selected="selected">ÜRÜN SEÇİNİZ</option>
+                            @foreach (var item in urunler)
+                            {
+                                <option value="@item.Id">@item.UrunAdi</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3"><strong>Şehir:</strong></label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="ilId">
+                            <option value="0" selected="selected">İL SEÇİNİZ</option>
+                            @foreach (var item in iller)
+                            {
+                                <option value="@item.Id">@item.SehirAdi</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3"><strong>Adres:</strong></label>
+                    <div class="col-md-8">
+                        <textarea name="message" id="adres" class="form-control" cols="5" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3"><strong>Açıklama:</strong></label>
+                    <div class="col-md-8">
+                        <textarea id="aciklama" class="form-control" cols="5" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="mt-2 ml-2"> <button type="button" class="btn btn-primary btn-rounded" style="width: 150px;" onclick="siparisOlustur();">GÖNDER</button></div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="title-text" style="color: #346bae">BAYİLERİMİZ</h2>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label"><strong>Şehir:</strong></label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="illiste">
+                            <option value="0">İL SEÇİNİZ</option>
+                            @foreach (var item in iller)
+                            {
+                                <option value="@item.Id">@item.SehirAdi</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div id="ilceliste">
+
+                </div>
+                
+                <div class="alert alert-beanred" role="alert" id="bayidata">
+                    <p>Lütfen il ve ilçe seçimi yapınız.</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+@section scripts
+{
+
+    <script type="text/javascript">
+        function siparisOlustur() {
+            var adsoyad = $("#adsoyad").val();
+            var eposta = $("#email").val();
+            var telefon = $("#phone").val();
+            var urunId = $("#urunId").val();
+            var adet = $("#adet").val();
+            var ilId = $("#ilId").val();
+            var adres = $("#adres").val();
+            var aciklama = $("#aciklama").val();
+            $.post('@Url.Action("SiparisEkle", "Siparis", new {area = "Panel"})',
+                {
+                    'AdSoyad': adsoyad,
+                    'EPosta': eposta,
+                    'Telefon': telefon,
+                    'UrunId': urunId,
+                    'Adet': adet,
+                    'IlId': ilId,
+                    'Adres': adres,
+                    'Aciklama':aciklama
+                },
+                (data) => {
+                    if (data) {
+                        debugger;
+                        clear();
+                        alert("Basarılı");
+                    }
+                });
+
+        }
+
+        function getsiparisdegerchange() {
+
+            $.get('/Panel/PanelHome/SiparisSayisi',
+                (data) => {
+                    debugger;
+                    var model = $("#siparisdata").empty();
+                    model.text(data);
+                });
+        }
+        $('#illiste').on('change',
+            function(e) {
+                debugger;
+                e.preventDefault();
+                var ilid = e.target.value;
+                getIlceler(ilid);
+            });
+        function getIlceler(ilid) {
+            debugger;
+            $.get('@Url.Action("GetIlceler", "Siparis", new {area = "Panel"})',
+                { 'sehirId': ilid },
+                function (data) {
+                    debugger;
+                    $("#ilceliste").html(data);
+                });
+        }
+        function clear() {
+            debugger;
+             $("#adsoyad").val("");
+            $("#email").val("");
+             $("#phone").val("");
+             $("#urunId").val(0).trigger('change');
+           $("#adet").val("");
+             $("#ilId").val(0).trigger('change');
+           $("#adres").val("");
+             $("#aciklama").val("");
+        }
+        function BayiGetir(ilceId) {
+            debugger;
+            $.get('@Url.Action("GetBayiBilgi", "Siparis", new {area = "Panel"})',
+                { 'ilceId': ilceId },
+                function(data) {
+                    $("#bayidata").html(data);
+                });
+        }
+    </script>
+}

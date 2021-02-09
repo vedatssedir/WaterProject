@@ -1,0 +1,109 @@
+﻿
+@model IList<DataLayer.DataModels.Urun>
+@{
+    var index = 0;
+}
+
+@if (Model.Count > 0)
+{
+
+    <table class="table table-bordered table-sm text-center table-striped" id="uruntable">
+        <thead style="background-color: #5a73ed; color: white;">
+            <tr>
+                <th>Sıra</th>
+                <th>Resim</th>
+                <th>Ürün Adı</th>
+                <th>Stok</th>
+                <th>Birim Fiyatı</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+                <tr>
+                    <td>@index</td>
+
+                    <td>
+                        <img src="~/@item.UrunResmi" height="100" width="100" />
+                    </td>
+                    <td>@item.UrunAdi</td>
+                    <td>@item.Stok</td>
+                    <td>@item.BirimFiyat</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" onclick="getUrun('@item.Id');" data-toggle="tooltip" data-placement="top" title="Ürün Güncelle"><i class="fa fa-pen"></i></button>
+                        <button class="btn btn-success btn-sm" onclick="UrunDetayOlustur('@item.Id');" data-toggle="tooltip" data-placement="top" title="Ürün Detay Oluştur"><i class="fa fa-list"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="UrunDetayGuncelleEkran('@item.Id');" data-toggle="tooltip" data-placement="top" title="Ürün Detay Güncelle"><i class="fa fa-window-restore"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="Remove('@item.Id');" data-toggle="tooltip" data-placement="top" title="Ürün Sil"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        <p>Sistemde kayıtlı ürün yoktur.</p>
+    </div>
+}
+
+<style>
+    .modal-lg {
+        max-width: 60%;
+    }
+</style>
+<div class="modal fade bd-example-modal-lg" id="mdlUrunDetay" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detaytitle"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div id="mdlDetayBody">
+
+            </div>
+            <div class="modal-footer">
+
+
+                <button class="btn btn-secondary" type="button" id="btnKaydet" onclick="urunDetayKaydet();">Kaydet</button>
+                <button class="btn btn-secondary" type="button" id="btnGuncelle" onclick="urunDetayKaydet();">Güncelle</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#uruntable').DataTable();
+    });
+    function UrunDetayOlustur(Id) {
+        $.get('@Url.Action("GetUrunDetayEkran","Urun",new {area="Panel"})',
+            { 'Id': Id },
+            (data) => {
+                $("#btnKaydet").attr("style", "display:block");
+                $("#btnGuncelle").attr("style", "display:none");
+                $("#detaytitle").text("Ürün Detay Oluştur.");
+                $("#mdlDetayBody").html(data);
+                $("#mdlUrunDetay").modal('show');
+            });
+    }
+
+    function UrunDetayGuncelleEkran(Id) {
+        $.get('@Url.Action("GetUrunDetayGuncelleEkran", "Urun",new {area="Panel"})',
+            { 'Id': Id },
+            (data) => {
+                $("#btnKaydet").attr("style", "display:none");
+                $("#btnGuncelle").attr("style", "display:block");
+                $("#detaytitle").text("Ürün Detay Güncelle.");
+                $("#mdlDetayBody").html(data);
+                $("#mdlUrunDetay").modal('show');
+            });
+    }
+
+</script>

@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "SiparisVer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Taskesti/css/bootstrap.css" rel="stylesheet" />
+<style>
+    #contactHeader {
+        background: url(../../Taskesti/images/resimler/dag3.jpg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 10px 10px 10px #a8d1ee;
+        border-radius: 20px 20px 20px 20px;
+        width: 98%;
+        margin: 15px;
+    }
+</style>
+<section class="page-title centred" id="contactHeader">
+    <div class="auto-container">
+        <div class="content-box" style="background-color:rgb(2 66 172);opacity: 0.6">
+            <h1 style="color: #f8f8f8;">SİPARİŞ VER</h1>
+            <div class="text" style="color: #f8f8f8;">Size daha iyi hizmet verebilmemiz için fikir, görüş ve önerilerimizi bizimle paylaşabilirsiniz.</div>
+        </div>
+    </div>
+</section>
+
+<section class="mt-5 mb-5 contact-section sec-pad">
+
+    <div class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-md-6 border-right">
+                <div class=" col-md-12 col-sm-12">
+                    <div class="inner-box">
+                        <h2 class="title-text" style="color:#346bae">SİPARİŞ VERİN</h2>
+                        <div class="form-inner">
+                            <form method="post" action="#" id="contact-form">
+                                <div class="row clearfix">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>ADINIZ</label>
+                                        <input type="text" name="username">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>EPOSTA</label>
+                                        <input type="email" name="email">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>TELEFON</label>
+                                        <input type="text" name="subject">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>ÜRÜNLER</label>
+                                        <div class="select-box">
+                                            <select class="selectmenu" id="ui-id-1" style="display: none;">
+                                                <option selected="selected">ÜRÜN SEÇİNİZ</option>
+                                                <option>19L Policarbon Damacana</option>
+                                                <option>15L Cam Damacana</option>
+                                                <option>750ml Cam Şişe</option>
+                                                <option>330ml Cam Şişe</option>
+                                                <option>250ml Bardak Su</option>
+                                                <option>200ml Bardak Su</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>ADET</label>
+                                        <input type="text" name="subject">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>İL</label>
+                                        <div class="select-box">
+                                            <select class="selectmenu" id="ui-id-1" style="display: none;">
+                                                <option selected="selected">İL SEÇİNİZ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <label>ADRES</label>
+                                        <textarea name="message"></textarea>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
+                                        <button type="submit" name="submit-form">GÖNDER</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class=" col-md-12 col-sm-12">
+                    <div class="inner-box">
+                        <h2 class="title-text" style="color:#346bae">BAYİLERİMİZ</h2>
+                        <div class="form-inner">
+                            <form method="post" action="#" id="contact-form">
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>İL</label>
+                                        <div class="select-box">
+                                            <select class="selectmenu" id="ui-id-1" style="display: none;">
+                                                <option selected="selected">İL SEÇİNİZ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>İL</label>
+                                        <div class="select-box">
+                                            <select class="selectmenu" id="ui-id-1" style="display: none;">
+                                                <option selected="selected">İLÇE SEÇİNİZ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-beanred" role="alert">
+                    <p>Lütfen il ve ilçe seçimi yapınız.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+

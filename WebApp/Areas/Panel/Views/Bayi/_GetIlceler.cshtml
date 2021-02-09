@@ -1,0 +1,10 @@
+﻿
+@model IList<DataLayer.DataModels.Ilceler>
+
+@*<option value="0">İlçe Seçiniz</option>*@
+@foreach (var item in Model)
+{
+
+    <option value="@item.Id">@item.IlceAdi</option>
+
+}

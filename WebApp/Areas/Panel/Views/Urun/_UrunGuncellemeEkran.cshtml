@@ -1,0 +1,54 @@
+﻿@model DataLayer.ViewModels.UrunGuncelleViewModel
+
+
+<input type="hidden" id="ID" value="@Model.Id"/>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Ürün Adı:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="txtUrunAdi" value="@Model.UrunAdi" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Stok:</label>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" id="txtStok" value="@Model.Stok" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Birim Fiyat:</label>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" id="txtbirimfiyat" value="@Model.BirimFiyat" />
+                </div>
+            </div>
+            <div id="alertbox"></div>
+        </div>
+      
+        <div class="col-md-6">
+            <div class="form-group">
+                <div style="padding-left: 90px;">
+                    <img height="150" width="150" style="margin-bottom: 25px;" src="~/@Model.ResimAdi" id="imagePreview" />
+                </div>
+                <input type="file" id="Resimx" class="form-control" onchange="ShowImagePreview(this,document.getElementById('imagePreview'))" />
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+
+
+
+<script type="text/javascript">
+    function ShowImagePreview(imageUploader, previewImage) {
+        if (imageUploader.files && imageUploader.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $(previewImage).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(imageUploader.files[0]);
+        }
+    }
+</script>

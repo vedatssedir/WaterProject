@@ -1,0 +1,171 @@
+﻿@using DataLayer.DataModels
+
+@{
+    ViewBag.Title = "Siparis";
+    Layout = "~/Areas/Panel/Views/Shared/_PanelLayout.cshtml";
+    var sehirler = (IList<Sehirler>) ViewBag.sehirler;
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h1 class="mb-0 font-size-18">SİPARİŞ İŞLEMLERİ</h1>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                                <li class="breadcrumb-item active">Sipariş işlemleri</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-md-2 col-form-label"><strong>Sehir:</strong></label>
+                                            <div class="col-md-8">
+                                                <select id="searchsehir" class="form-control">
+                                                    <option value="0">Şehir Seçiniz.</option>
+                                                    @foreach (var item in sehirler)
+                                                    {
+                                                        <option value="@item.Id">@item.SehirAdi</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label class="col-md-2 col-form-label"><strong>Tarih:</strong></label>
+                                            <div class="col-md-9">
+                                                <input type="date" class="form-control" id="siparistarih"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-outline-primary" onclick="SiparisAra();">Sipariş Ara</button>
+                                    </div>
+                                    
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body" id="tblsiparis">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .modal-lg {
+        max-width: 60%;
+    }
+</style>
+<div class="modal fade bd-example-modal-lg" id="mdlSiparis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">SİPARİŞ DURUM BİLDİR</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body" id="mdlUrunData">
+                <div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customControlInline">
+                        <label class="custom-control-label" for="customControlInline">Remember me</label>
+                    </div>
+
+
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" id="btnKaydet" onclick="urunKaydet();">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts
+{
+  
+    <script type="text/javascript">
+        $(function() {
+            debugger;
+            var hubNotify = $.connection.phub;
+            $.connection.hub.start().done(function() {
+                getData(1);
+            });
+            hubNotify.client.refreshData = function() {
+                getData(1);
+            };
+        });
+        getData(1);
+        function getData(id) {
+            $.get('@Url.Action("SiparisListesi", "Siparis", new {area = "Panel"})',
+                { 'page': id },
+                (data) => {
+                    $("#tblsiparis").html(data);
+                });
+        }
+
+
+        function SiparisAra(Id) {
+            var sehirId = $("#searchsehir").val();
+            var siparistarih = $("#siparistarih").val();
+
+            $.get('@Url.Action("SiparisAra", "Siparis", new {area = "Panel"})',
+                {
+                    'page': Id,
+                    'sehirId': sehirId,
+                    'siparisTarih':siparistarih
+                },
+                (data) => {
+                    $("#tblsiparis").html(data);
+                });
+
+
+        }
+
+    </script>
+}

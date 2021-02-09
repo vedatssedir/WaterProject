@@ -1,0 +1,82 @@
+﻿@model IList<DataLayer.DataModels.Icerikler>
+@{
+    ViewBag.Title = "Kurumsal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var count = 0;
+    var modelcount = Model.Count();
+}
+
+
+<style>
+    #contactHeader {
+        background: url(../../Taskesti/images/resimler/dag.jpg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 10px 10px 10px #a8d1ee;
+        border-radius: 20px 20px 20px 20px;
+        width: 98%;
+        margin: 15px;
+    }
+</style>
+<section class="page-title centred" id="contactHeader">
+    <div class="auto-container">
+        <div class="content-box" style="background-color:rgb(2 66 172);opacity: 0.6">
+            <h1 style="color: #f8f8f8;">KURUMSAL</h1>
+        </div>
+    </div>
+</section>
+
+<section class="page-title centred" style="background-image: url(../../Taskesti/images/background/page-title.jpg);">
+
+
+    @foreach (var item in Model)
+    {
+        count++;
+        if (item.Sıra == 1)
+        {
+            <div class="auto-container">
+                <div class="content-box">
+                    <h2 style="color: #346bae">@item.Baslik</h2>
+                    <hr />
+                    <div class="text" style="text-align: justify">
+                        @item.Text
+                    </div>
+                </div>
+            </div>
+        }
+        if (item.Sıra == 2)
+        {
+            <div class="auto-container pt-5">
+                <div class="content-box">
+                    <h2 style="color: #346bae">@item.Baslik</h2>
+                    <hr />
+                    <div class="text" style="text-align: justify">
+                        @item.Text
+                    </div>
+                </div>
+            </div>
+        }
+        if (item.Sıra == 3)
+        {
+            <div class="auto-container pt-5">
+                <div class="content-box">
+                    <h2 style="color: #346bae">@item.Baslik</h2>
+                    <hr />
+                    <div class="text" style="text-align: justify">
+                        @item.Text
+                    </div>
+                </div>
+            </div>
+        }
+        if (count == modelcount)
+        {
+            break;
+        }
+    }
+</section>
+
+
+<button class="scroll-top scroll-to-target" data-target="html">
+    <span class="fas fa-angle-up"></span>
+</button>

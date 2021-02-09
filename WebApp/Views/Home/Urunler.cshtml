@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Ürünler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IList<DataLayer.DataModels.Urun>
+
+<style>
+    #contactHeader {
+        background: url(../../Taskesti/images/resimler/dag2.jpg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /*background-position: center;*/
+        box-shadow: 10px 10px 10px #a8d1ee;
+        border-radius: 20px 20px 20px 20px;
+        width: 98%;
+        margin: 15px;
+    }
+</style>
+<section class="page-title centred" id="contactHeader">
+    <div class="auto-container">
+        <div class="content-box" style="background-color:rgb(2 66 172);opacity: 0.6">
+            <h1 style="color: #f8f8f8;">ÜRÜNLER</h1>
+            @* <div class="text" style="color: #f8f8f8;">Size daha iyi hizmet verebilmemiz için fikir, görüş ve önerilerimizi bizimle paylaşabilirsiniz.</div>*@
+        </div>
+    </div>
+</section>
+
+<section class="shop-page-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="row clearfix">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="single-shop-block">
+                                <div class="inner-box">
+                                    <div class="border-one"></div>
+                                    <div class="border-two"></div>
+                                    <figure class="image-box">
+                                        <img style="height: 300px;" src="~/@item.UrunResmi" alt="">
+                                    </figure>
+                                    <h3><a href="#">@item.UrunAdi</a></h3>
+
+
+
+
+                                    <div class="cart-btn">
+                                        <a href="javascript:urunDetay('@item.Id');">
+                                                <i class="flaticon-water-1"></i>Ürün Detay
+                                            </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        function urunDetay(Id) {
+
+            $.post('@Url.Action("GetDetayKontrol","Home")',
+                { 'urunId': Id },
+                (data) => {
+                    debugger;
+                    if (data) {
+                        window.location.href = `/Home/UrunDetay/?urunId=${Id}`;
+                    } else {
+                        alert("Ürün Detay Yoktur");
+                    }
+                });
+
+           
+
+        }
+    </script>
+}

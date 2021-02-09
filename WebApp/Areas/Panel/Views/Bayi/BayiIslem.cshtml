@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "BayiIslem";
+    Layout = "~/Areas/Panel/Views/Shared/_PanelLayout.cshtml";
+}
+
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h1 class="mb-0 font-size-18">BAYİ İŞLEMLERİ</h1>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                                <li class="breadcrumb-item active">Bayi işlemleri</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="m-4">
+                            <button class="btn btn-outline-info" id="bayiEkran">Bayi Oluştur</button>
+                        </div>
+
+                        <div class="card-body" id="tblbayi">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .modal-lg {
+        max-width: 80%;
+    }
+</style>
+<div class="modal fade bd-example-modal-lg" id="mdlBayi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div id="mdlUrunData">
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" id="btnKaydet" onclick="BayiKaydet();">Kaydet</button>
+                <button class="btn btn-secondary ml-2" type="button" id="btnGuncelle" onclick="BayiGuncelle();">Güncelle</button>
+                <button class="btn btn-secondary ml-2" type="button" onclick="clear();">Temizle</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            debugger;
+            var hubNotify = $.connection.phub;
+            $.connection.hub.start().done(function() {
+                getBayiData();
+                clear();
+            });
+
+            hubNotify.client.refreshBayiData = function() {
+                getBayiData();
+                clear();
+            };
+
+        });
+        function getBayiData() {
+            $.get('@Url.Action("GetBayiListesi","Bayi",new {area="Panel"})',
+                (data) => {
+                    $("#tblbayi").html(data);
+                });
+        }
+        $("#bayiEkran").on('click',
+            function () {
+                debugger;
+                $.get('@Url.Action("GetBayiBilgiEkran","Bayi",new {area="Panel"})',
+                    (data) => {
+                        $("#btnKaydet").attr("style", "display:block");
+                        $("#btnGuncelle").attr("style", "display:none");
+                        $("#exampleModalCenterTitle").text("Bayi Oluştur");
+                        $("#mdlUrunData").html(data);
+                        $("#mdlBayi").modal('show');
+                    });
+            });
+        function GetGuncellemeEkran(Id) {
+            $.get('@Url.Action("GetBayiBilgiEkran","Bayi",new {area="Panel"})', {'Id':Id},
+                (data) => {
+                    $("#btnKaydet").attr("style", "display:none");
+                    $("#btnGuncelle").attr("style", "display:block");
+                    $("#exampleModalCenterTitle").text("Bayi Güncelle");
+                    $("#mdlUrunData").html(data);
+                    $("#mdlBayi").modal('show');
+                });
+        }
+        function BayiKaydet() {
+            debugger;
+            var sehirId = $("#sehirIds").val();
+            var ilceId = $("#ilceIds").val();
+            var eposta = $("#eposta").val();
+            var telefon = $("#telefon").val();
+            var sirketadi = $("#sirketadi").val();
+            var adres = $("#adres").val();
+
+            $.post('@Url.Action("BayiOlustur","Bayi",new {area="Panel"})',
+                {
+                    'Adres': adres,
+                    'Eposta': eposta,
+                    'Telefon': telefon,
+                    'SehirId': sehirId,
+                    'IlceId': ilceId,
+                    'SirketAdi': sirketadi
+                },
+                (data) => {
+                    if (data) {
+                        UI.alertToaster("success", "Ekleme işlemi basarılı bir sekilde gerçekleşti", "Basarılı");
+                    }
+                });
+        }
+
+        function BayiGuncelle() {
+            debugger;
+            var id = $("#ID").val();
+            var sehirId = $("#sehirIds").val();
+            var ilceId = $("#ilceIds").val();
+            var eposta = $("#eposta").val();
+            var telefon = $("#telefon").val();
+            var sirketadi = $("#sirketadi").val();
+            var adres = $("#adres").val();
+
+            $.post('@Url.Action("BayiGuncelle","Bayi",new {area="Panel"})',
+                {
+                    'Id': id,
+                    'Adres': adres,
+                    'Eposta': eposta,
+                    'Telefon': telefon,
+                    'SehirId': sehirId,
+                    'IlceId': ilceId,
+                    'SirketAdi': sirketadi
+                },
+                (data) => {
+                    if (data) {
+                        UI.alertToaster("success", "Bayi güncelleme işlemi basarılı bir sekilde gerçekleşti", "Basarılı");
+                    }
+                });
+
+
+        }
+
+
+        function clear() {
+           $("#sehirIds").val(0).trigger('change');
+           $("#ilceIds").val("").trigger('change');
+           $("#eposta").val("");
+            $("#telefon").val("");
+           $("#sirketadi").val("");
+           $("#adres").val("");
+        }
+
+
+        function Remove(Id) {
+            $.post('@Url.Action("BayiSil","Bayi",new {area="Panel"})',
+                { 'Id': Id },
+                (data) => {
+                    if (data) {
+                        UI.alertToaster("success", "Bayi silme işlemi basarılı bir sekilde gerçekleşti", "Basarılı");
+                    }
+                });
+        }
+
+
+    </script>
+}

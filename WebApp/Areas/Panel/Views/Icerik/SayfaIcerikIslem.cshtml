@@ -1,0 +1,112 @@
+﻿@using DataLayer.DataModels
+
+@{
+    ViewBag.Title = "SayfaIcerikIslem";
+    Layout = "~/Areas/Panel/Views/Shared/_PanelLayout.cshtml";
+    var sayfalar = (IList<Sayfalar>)ViewBag.sayfalar;
+}
+
+
+
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h1 class="mb-0 font-size-18">SAYFA İÇERİK İŞLEMLERİ</h1>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                                <li class="breadcrumb-item active">Sayfa  işlemleri</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Sayfalar:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" id="sayfaId">
+                                            <option value="0">Sayfa Seçiniz</option>
+                                            @foreach (var item in sayfalar)
+                                            {
+                                                <option value="@item.Id">@item.SayfaAdi</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <button class="btn btn-outline-info" onclick="SayfaGetir();">Sayfa Getir</button>
+
+                            </div>
+                            <div class="col-md-2"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body" id="icerikbody">
+                            <div class="card border border-danger">
+                                <div class="card-header bg-transparent border-danger">
+                                    <h5 class="my-0 text-danger"><i class="mdi mdi-block-helper mr-3"></i>İşlem yapabilmek için sayfa seçimi yapınız.</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+
+        function SayfaGetir() {
+            
+            var sayfaId = $("#sayfaId").val();
+            $.get('@Url.Action("GetSayfaIcerikListesi", "Icerik",new {area="Panel"})',
+                { 'sayfaId': sayfaId },
+                (data) => {
+                    $("#icerikbody").html(data);
+                });
+        }
+    </script>
+}

@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "UrunDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model DataLayer.DataModels.UrunDetay
+<section class="page-title centred" style="background-image: url(../../Taskesti/images/background/page-title.jpg);">
+    <div class="auto-container">
+        <div class="content-box">
+            <h1>ÜRÜN DETAY</h1>
+           
+        </div>
+    </div>
+</section>
+
+<section class="shop-details">
+    <div class="product-details-content">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <figure class="image-box"><a href="images/resource/shop/shop-details.png" class="lightbox-image"><img src="~/@Model.UrunResim" alt=""></a></figure>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                    <div class="content-box">
+                        <h2>@Model.UrunAdi</h2>
+                        <span class="size">@Model.UrunStok</span>
+                        <div class="text">@Model.UrunAciklama</div>
+                        <div class="price">$17.00 <del>$29.50</del></div>
+                        <div class="select-box">
+                            <select class="selectmenu" id="ui-id-1">
+                                <option selected="selected">Select Your Bottle Options</option>
+                                <option>Commercial Water Services</option>
+                                <option>Water Filtration</option>
+                                <option>Minarel Water Services</option>
+                            </select>
+                        </div>
+                        <div class="addto-cart-box clearfix">
+                            <div class="item-quantity">
+                                <input class="quantity-spinner" type="text" value="1" name="quantity">
+                            </div>
+                            <div class="cart-btn"><button type="button"><i class="flaticon-online-shop"></i>buy now</button></div>
+                        </div>
+                        <ul class="categories list-item">
+                            <li>Categories:</li>
+                            <li><a href="#">Natural Water</a>,</li>
+                            <li><a href="#">Bottle</a></li>
+                        </ul>
+                        <ul class="categories list-item">
+                            <li>Tags:</li>
+                            <li><a href="#">Natural Water</a>,</li>
+                            <li><a href="#">Bottle</a></li>
+                        </ul>
+                        <ul class="product-id list-item">
+                            <li>Product ID:</li>
+                            <li>3638</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</section>

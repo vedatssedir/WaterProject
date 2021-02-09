@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee15601d07e44795bd0d6ac030bc771b" Name="Diagram1">
+        <EntityTypeShape EntityType="TaskestiDbModel.Bayiler" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.EPostalar" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Icerikler" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Ilceler" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Kullanici" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.KullaniciRol" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Rol" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Sayfalar" Width="1.5" PointX="3" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Sehirler" Width="1.5" PointX="1.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Siparis" Width="1.5" PointX="5.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Site" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.sysdiagrams" Width="1.5" PointX="3.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskestiDbModel.Urun" Width="1.5" PointX="3" PointY="30.5" IsExpanded="true" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Bayiler_Ilceler" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Bayiler_Sehirler" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Bayiler_Site" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_EPostalar_Site" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Icerikler_Sayfalar" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Icerikler_Site" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Ilceler_Sehirler" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_KullaniciRol_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_KullaniciRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Sayfalar_Site" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Siparis_Sehirler" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Siparis_Site" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Siparis_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskestiDbModel.FK_Urun_Site" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TaskestiDbModel.UrunDetay" Width="1.5" PointX="5.25" PointY="31" />
+        <AssociationConnector Association="TaskestiDbModel.FK_UrunDetay_Urun" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #contactHeader {
+        background: url(../../Taskesti/images/resimler/1757866.jpg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+       
+        box-shadow: 10px 10px 10px #a8d1ee;
+        border-radius: 20px 20px 20px 20px;
+        width: 98%;
+        margin: 15px;
+        /* filter: blur(2px);*/
+    }
+</style>
+
+<!--Page Title-->
+<section class="page-title centred" id="contactHeader">
+    <div class="auto-container" >
+        <div class="content-box" style="background-color:rgb(2 66 172);opacity: 0.6">
+            <h1 style="color: #f8f8f8;">İLETİŞİM BİLGİLERİMİZ</h1>
+        </div>
+    </div>
+</section>
+
+<!--End Page Title-->
+<!-- contact-section -->
+<section class="contact-section sec-pad">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-lg-4 col-md-12 col-sm-12 info-column">
+                <div class="info-box">
+                    <h2 class="title-text" style="color: #346bae">İLETİŞİM BİLGİLERİ</h2>
+                    <ul class="info-list clearfix wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <li style="color:#346bae"><i class="fas fa-phone"></i><strong>ÇAĞRI MERKEZİ</strong> <a href="tel:08508881414">0850 888 14 14</a></li>
+                        <li style="color:#346bae">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <strong>MERKEZ</strong>
+                            <p>Tekstilkent Cad. Koza Plaza B Blok No:29 Esenler / İstanbul</p>
+                        </li>
+                        <li style="color:#346bae">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <strong>DOLUM TESİSLERİ</strong>
+                            <p>Merkez Mahallesi Karaçomak Küme Evleri No: 29 14810 Taşkesti-Bolu</p>
+                        </li>
+                       
+                        <li style="color:#346bae"><i class="fas fa-envelope"></i><strong>E-mail</strong> <a href="mailto:bilgi@taskestisu.com"> bilgi@taskestisu.com</a></li>
+                        <li style="color:#346bae"><i class="fas fa-envelope"></i><strong>E-mail</strong> <a href="mailto:export@taskestisu.com"> export@taskestisu.com</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 inner-column">
+                <div class="inner-box">
+                    <h2 class="title-text" style="color:#346bae">İLETİŞİM FORMU</h2>
+                    <div class="form-inner">
+                        <form method="post" action="#" id="contact-form" class="default-form">
+                            <div class="row clearfix">
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label>ADINIZ</label>
+                                    <input type="text" name="username" id="adsoyad">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label>EPOSTA</label>
+                                    <input type="email" name="email" id="email">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label>KONU</label>
+                                    <input type="text" name="subject" id="konu">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label>TELEFON</label>
+                                    <input type="text" name="phone" id="telefon">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <label>MESAJ</label>
+                                    <textarea name="message" id="mesaj"></textarea>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
+                                    <button type="submit" name="submit-form" onclick="MailSent();">GÖNDER</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="map-section">
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1QI05STznYnorW4iIYtK006Td4BS30vqX" width="100%" height="480"></iframe>
+</section>
+
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        function MailSent() {
+            debugger;
+            var adsoyad = $("#adsoyad").val();
+            var eposta = $("#email").val();
+            var konu = $("#konu").val();
+            var telefon = $("#telefon").val();
+            var mesaj = $("#mesaj").val();
+
+            $.post('@Url.Action("EmailOlustur", "Email",new {area="Panel"})',
+                {
+                    'AdSoyad': adsoyad,
+                    'Eposta': eposta,
+                    'Konu': konu,
+                    'Telefon': telefon,
+                    'Mesaj':mesaj
+
+                },
+                (data) => {
+                    if (data) {
+                        alert("Basarılı");
+                    }
+                });
+
+
+        }
+    </script>
+}

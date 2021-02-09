@@ -1,0 +1,17 @@
+﻿
+@model IList<DataLayer.DataModels.Ilceler>
+
+
+
+<div class="form-group row">
+    <label class="col-md-2 col-form-label"><strong>Şehir:</strong></label>
+    <div class="col-md-8">
+        <select class="form-control" id="ilceId" onchange="BayiGetir(this.value);">
+            <option value="0">İLÇE SEÇİNİZ</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.Id">@item.IlceAdi</option>
+            }
+        </select>
+    </div>
+</div>

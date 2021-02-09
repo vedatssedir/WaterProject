@@ -1,0 +1,77 @@
+﻿
+@model DataLayer.ViewModels.UrunDetayViewModel
+
+
+<input type="hidden" id="ID" value="@Model.UrunId" />
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Ürün Adı:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="txtUrunAdi" value="@Model.UrunAdi" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Stok:</label>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" id="txtStok" value="@Model.UrunStok" />
+                </div>
+            </div>
+            @if (Model.UrunAciklama!=null)
+            {
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Ürün Açıklama:</label>
+                    <div class="col-md-9">
+                        <textarea id="urundetayaciklama" class="form-control" rows="10" cols="10">@Model.UrunAciklama</textarea>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Ürün Açıklama:</label>
+                    <div class="col-md-9">
+                        <textarea id="urundetayaciklama" class="form-control" rows="10" cols="10"></textarea>
+                    </div>
+                </div>
+            }
+
+            <input type="hidden" id="resimpath" value="@Model.ResimPath"/>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    function urunDetayKaydet() {
+        debugger;
+        var Id = $("#ID").val();
+        var urunAdi = $("#txtUrunAdi").val();
+        var stok = $("#txtStok").val();
+        var aciklama = $("#urundetayaciklama").val();
+        var resimyol = $("#resimpath").val();
+        $.post('@Url.Action("UrunOlustur","Urun",new {area="Panel"})',
+            {
+                'UrunId': Id,
+                'UrunAdi': urunAdi,
+                'UrunStok': stok,
+                'UrunAciklama': aciklama,
+                'ResimPath':resimyol
+            },
+            (data) => {
+                if (data) {
+                    UI.alertToaster("success", "Ürün detayı basarılı bir şekilde olusturuldu", "Basarılı");
+                } else {
+                    UI.alertToaster("warning", "Bu ürün  için detay olusturuldu.Lütfen güncelleyin.", "Basarılı");
+                }
+            });
+    }
+
+
+   
+
+</script>
+

@@ -1,0 +1,118 @@
+﻿@using DataLayer.DataModels
+@using DataLayer.ViewModels
+@using Models.Interfaces
+
+@{
+    var siteler = (IList<GetSiteViewModel>)ViewBag.Siteler;
+
+
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Taşketi-Giriş</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    @*<link rel="shortcut icon" href="assets/images/favicon.ico">*@
+
+    <!-- Bootstrap Css -->
+    <link href="~/DocumentFiles/PanelTemplate/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Icons Css -->
+    <link href="~/DocumentFiles/PanelTemplate/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="~/DocumentFiles/PanelTemplate/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="account-pages my-5 pt-sm-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card overflow-hidden">
+
+                        <div class="card-body pt-4">
+
+                            <div class="p-2">
+                                <div class="form-group">
+                                    <label for="username">Site Seç</label>
+                                    <select class="form-control" id="siteId">
+                                        <option value="0">Site Seçiniz</option>
+                                        @foreach (var item in siteler)
+                                        {
+                                            <option value="@item.Id">@item.SiteAdi</option>
+                                        }
+                                    </select>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userpassword">Password</label>
+                                    <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                </div>
+                                <div class="mt-3">
+                                    <button class="btn btn-primary btn-block waves-effect waves-light" type="button" onclick="GirisYap();">Log In</button>
+                                </div>
+                                <div class="mt-4 text-center">
+                                    <a href="#" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/jquery/jquery.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/libs/node-waves/waves.min.js"></script>
+    <script src="~/DocumentFiles/PanelTemplate/assets/js/app.js"></script>
+
+
+    <script type="text/javascript">
+    function GirisYap() {
+        var username = $("#username").val();
+        var password = $("#userpassword").val();
+        var siteId = $("#siteId").val();
+
+        if (username === "") {
+            alert("Kulanıcı Adı giriniz");
+        } else if (password === "") {
+            alert("Parolanızı giriniz");
+        } else if (siteId === "0") {
+            alert("İşlem yapmak istediğiniz site seçiniz");
+        } else {
+            $.post('@Url.Action("Login","PanelGiris",new {area="Panel"})',
+                { 'username': username, 'password': password,'siteId':siteId},
+                (data) => {
+                    if (data) {
+                        window.location.href = '@Url.Action("PanelAdmin","PanelHome",new {area="Panel"})';
+                    }
+                });
+        }
+
+
+    }
+
+    </script>
+
+
+
+
+</body>
+</html>
